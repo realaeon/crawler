@@ -1,0 +1,10 @@
+#Python: .pyc .pyo
+*.py[cod]
+
+#test file
+*.json
+
+#ctag file
+tags
+
+\#*

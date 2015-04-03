@@ -4,7 +4,7 @@ import json
 import codecs
 import pymongo
 
-class IoTPipeline(object):
+class JsonPipeline(object):
     def __init__(self):
         self.file = codecs.open('IoT.json', 'wb', encoding='utf-8')
 

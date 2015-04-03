@@ -2,13 +2,14 @@
 # -*- coding:utf-8 -*-
 
 from scrapy.spider import Spider
+from IoT_crawler.scrapy_redis.spiders import RedisSpider
 from scrapy.selector import Selector
 from scrapy import log
 from scrapy.http import Request,FormRequest
 from IoT_crawler.items import IoTCrawlerItem,SensorItem
 
 
-class W3schoolSpider(Spider):
+class IoTSpider(RedisSpider):
     #log.start("log",loglevel='INFO')
     name = "IoT_crawler"
     allowed_domains = ["http://www.sensor.com.cn/"]
