@@ -1,0 +1,49 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+BOT_NAME	IoT_crawler/settings.py	/^BOT_NAME = 'IoT_crawler'$/;"	v
+Field	IoT_crawler/items.py	/^from scrapy.item import Item,Field$/;"	i
+ITEM_PIPELINES	IoT_crawler/settings.py	/^ITEM_PIPELINES = {'IoT_crawler.pipelines.MongoPipeline':300}$/;"	v
+IoTCrawlerItem	IoT_crawler/items.py	/^class IoTCrawlerItem(Item):$/;"	c
+IoTCrawlerItem	IoT_crawler/spiders/IoT_spider.py	/^from IoT_crawler.items import IoTCrawlerItem,SensorItem$/;"	i
+IoTPipeline	IoT_crawler/pipelines.py	/^class IoTPipeline(object):$/;"	c
+Item	IoT_crawler/items.py	/^from scrapy.item import Item,Field$/;"	i
+MONGO_DATABASE	IoT_crawler/settings.py	/^MONGO_DATABASE = 'mydb'$/;"	v
+MONGO_URI	IoT_crawler/settings.py	/^MONGO_URI = 'mongodb:\/\/localhost:27017\/'$/;"	v
+MongoPipeline	IoT_crawler/pipelines.py	/^class MongoPipeline(object):$/;"	c
+NEWSPIDER_MODULE	IoT_crawler/settings.py	/^NEWSPIDER_MODULE = 'IoT_crawler.spiders'$/;"	v
+SPIDER_MODULES	IoT_crawler/settings.py	/^SPIDER_MODULES = ['IoT_crawler.spiders']$/;"	v
+Selector	IoT_crawler/spiders/IoT_spider.py	/^from scrapy.selector import Selector$/;"	i
+SensorItem	IoT_crawler/items.py	/^class SensorItem(Item):$/;"	c
+SensorItem	IoT_crawler/spiders/IoT_spider.py	/^from IoT_crawler.items import IoTCrawlerItem,SensorItem$/;"	i
+Spider	IoT_crawler/spiders/IoT_spider.py	/^from scrapy.spider import Spider$/;"	i
+W3schoolSpider	IoT_crawler/spiders/IoT_spider.py	/^class W3schoolSpider(Spider):$/;"	c
+__init__	IoT_crawler/pipelines.py	/^    def __init__(self):$/;"	m	class:IoTPipeline
+__init__	IoT_crawler/pipelines.py	/^    def __init__(self, mongo_uri, mongo_db):$/;"	m	class:MongoPipeline
+allowed_domains	IoT_crawler/spiders/IoT_spider.py	/^    allowed_domains = ["http:\/\/www.sensor.com.cn\/"]$/;"	v	class:W3schoolSpider
+close_spider	IoT_crawler/pipelines.py	/^    def close_spider(self, spider):$/;"	m	class:MongoPipeline
+codecs	IoT_crawler/pipelines.py	/^import codecs$/;"	i
+collection_name	IoT_crawler/pipelines.py	/^    collection_name = 'sensor'$/;"	v	class:MongoPipeline
+desc	IoT_crawler/items.py	/^    desc = Field()$/;"	v	class:IoTCrawlerItem
+desc	IoT_crawler/items.py	/^    desc = Field()$/;"	v	class:SensorItem
+from_crawler	IoT_crawler/pipelines.py	/^    def from_crawler(cls, crawler):$/;"	m	class:MongoPipeline
+json	IoT_crawler/pipelines.py	/^import json$/;"	i
+link	IoT_crawler/items.py	/^    link = Field()$/;"	v	class:IoTCrawlerItem
+link	IoT_crawler/items.py	/^    link = Field()$/;"	v	class:SensorItem
+log	IoT_crawler/spiders/IoT_spider.py	/^from scrapy import log$/;"	i
+name	IoT_crawler/spiders/IoT_spider.py	/^    name = "IoT_crawler"$/;"	v	class:W3schoolSpider
+open_spider	IoT_crawler/pipelines.py	/^    def open_spider(self, spider):$/;"	m	class:MongoPipeline
+parse	IoT_crawler/spiders/IoT_spider.py	/^    def parse(self, response):$/;"	m	class:W3schoolSpider
+picture	IoT_crawler/items.py	/^    picture = Field()$/;"	v	class:SensorItem
+process_item	IoT_crawler/pipelines.py	/^    def process_item(self, item, spider):$/;"	m	class:IoTPipeline
+process_item	IoT_crawler/pipelines.py	/^    def process_item(self, item, spider):$/;"	m	class:MongoPipeline
+prod_area	IoT_crawler/items.py	/^    prod_area = Field()$/;"	v	class:SensorItem
+producer	IoT_crawler/items.py	/^    producer = Field()$/;"	v	class:SensorItem
+pymongo	IoT_crawler/pipelines.py	/^import pymongo$/;"	i
+scrapy	IoT_crawler/items.py	/^import scrapy$/;"	i
+start_urls	IoT_crawler/spiders/IoT_spider.py	/^    start_urls = [$/;"	v	class:W3schoolSpider
+title	IoT_crawler/items.py	/^    title = Field()$/;"	v	class:IoTCrawlerItem
+title	IoT_crawler/items.py	/^    title = Field()$/;"	v	class:SensorItem

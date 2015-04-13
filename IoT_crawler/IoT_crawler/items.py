@@ -8,3 +8,12 @@ class IoTCrawlerItem(Item):
     link = Field()
     desc = Field()
 
+class SensorItem(Item):
+    title = Field()
+    picture = Field()
+    link = Field()
+    desc = Field()
+    producer = Field()
+    prod_area = Field()
+
+
