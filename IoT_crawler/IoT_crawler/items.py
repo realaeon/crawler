@@ -15,5 +15,6 @@ class SensorItem(Item):
     desc = Field()
     producer = Field()
     prod_area = Field()
+    price = Field()
 
 
