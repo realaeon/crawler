@@ -9,7 +9,7 @@ COOKIES_ENABLED = True
 
 SPIDER_MODULES = ['IoT_crawler.spiders']
 NEWSPIDER_MODULE = 'IoT_crawler.spiders'
-ITEM_PIPELINES = {#'IoT_crawler.pipelines.MongoPipeline':300,
+ITEM_PIPELINES = {'IoT_crawler.pipelines.MongoPipeline':300,
                   'IoT_crawler.pipelines.JsonPipeline':200,}
 
 ####mongodb##### 

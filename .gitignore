@@ -5,6 +5,7 @@
 *.json
 
 #ctag file
-tags
+TAGS
 
 \#*
+*~

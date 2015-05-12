@@ -7,7 +7,8 @@ from scrapy.selector import Selector
 from scrapy import log
 from scrapy.http import Request,FormRequest
 from IoT_crawler.items import IoTCrawlerItem,SensorItem
-
+import urllib
+import sys
 
 class IoTSpider(RedisSpider):
     #log.start("log",loglevel='INFO')
@@ -80,12 +81,13 @@ class SensorSpider(Spider):
 
             
 class Alibaba(Spider):
-    name = "baba_crawler"
-    myKeywords = '%C0%B6%D1%C0%C4%A3%BF%E9'#'zigbee%C4%A3%BF%E9'  #'wifi%C4%A3%BF%E9'
+    name = "ali_crawler"
+    myKeywords ='智能手表' #'%C0%B6%D1%C0%C4%A3%BF%E9'#'zigbee%C4%A3%BF%E9'  #'wifi%C4%A3%BF%E9'
+    myURLKeywords=urllib.quote(myKeywords.decode(sys.stdin.encoding).encode('gbk'))
     download_delay = 1
     start_urls = []
-    for i in range(1,3):
-        start_urls.append("http://s.1688.com/selloffer/offer_search.htm?keywords="+myKeywords+"#beginPage="+str(i))
+    for i in range(1,30):
+        start_urls.append("http://s.1688.com/selloffer/offer_search.htm?keywords="+myURLKeywords+"#beginPage="+str(i))
 
     '''
     def start_requests(self):
@@ -122,3 +124,41 @@ class Alibaba(Spider):
             yield item
 
      
+class JingDong(RedisSpider):
+    name = "jd_crawler"
+    myKeywords = '智能手表' 
+    #myURLKeywords=myKeywords.decode(sys.stdin.encoding).encode('gbk'))
+    download_delay = 1
+    start_urls = []
+    for i in range(30,100):
+        start_urls.append("http://search.jd.com/Search?keyword="+myKeywords+"&enc=utf-8&Page="+str(i))
+
+    def parse(self,response):
+        sel = Selector(response)
+        sites = sel.xpath("//*[@id='plist']/ul/li")
+        items = []
+
+        for site in sites:
+            item = SensorItem()
+
+            title = site.xpath('./div/div[2]/a/text()').extract()
+            picture = site.xpath('./div/div[1]/a/img/@data-lazyload').extract()
+            link = site.xpath('./div/div[2]/a/@href').extract()
+            price = site.xpath('./div/div[3]/strong/text()').extract()
+            #desc = site.xpath('./div[2]/div[2]/div[2]/span/text()').extract()
+            #producer = site.xpath('./div[2]/p/a/text()').extract()
+            #prod_area = site.xpath('./div[2]/p/text()').extract()
+
+            item['title'] = [t.encode('utf-8') for t in title]
+            item['picture'] = [p.encode('utf-8') for p in picture]
+            item['link'] = [l.encode('utf-8') for l in link]
+            item['price'] = [p.encode('utf-8') for p in price]
+            #item['desc'] = [d.encode('utf-8') for d in desc]
+            #item['producer'] = [p.encode('utf-8') for p in producer]
+            #item['prod_area'] = [p.encode('utf-8') for p in prod_area]
+            yield item
+            items.append(item)
+
+        
+
+                                                                    
