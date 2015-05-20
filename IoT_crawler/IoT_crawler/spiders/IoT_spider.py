@@ -11,7 +11,6 @@ import urllib
 import sys
 
 class IoTSpider(RedisSpider):
-    #log.start("log",loglevel='INFO')
     name = "IoT_crawler"
     allowed_domains = ["http://www.sensor.com.cn/"]
     start_urls = [
@@ -35,10 +34,6 @@ class IoTSpider(RedisSpider):
             item['link'] = [l.encode('utf-8') for l in link]
             item['desc'] = [d.encode('utf-8') for d in desc]
             items.append(item)
-
-            log.msg("Appending item...",level='INFO')
-
-
         log.msg("Append done.",level='INFO')
         return items
 
@@ -89,17 +84,6 @@ class Alibaba(Spider):
     for i in range(1,30):
         start_urls.append("http://s.1688.com/selloffer/offer_search.htm?keywords="+myURLKeywords+"#beginPage="+str(i))
 
-    '''
-    def start_requests(self):
-        return [Request("http://login.1688.com/",callback=self.logged_in)]
-    def logged_in(self,response):
-        print 'Preparing login'
-        return [FormRequest.from_response(response,#"http://www.zhihu.com/login",
-                                          formdata = {'TPL_username': '','TPL_password': '','rememberme': 'y'},
-                                          callback = self.parse
-                                        )]
-    '''
-
     def parse(self,response):
         sel = Selector(response)
         items = []
@@ -126,38 +110,38 @@ class Alibaba(Spider):
      
 class JingDong(RedisSpider):
     name = "jd_crawler"
-    myKeywords = '智能手表' 
-    #myURLKeywords=myKeywords.decode(sys.stdin.encoding).encode('gbk'))
+    myKeywords = '智能眼镜' 
     download_delay = 1
     start_urls = []
-    for i in range(30,100):
+    item = SensorItem()
+    for i in range(9,90):
         start_urls.append("http://search.jd.com/Search?keyword="+myKeywords+"&enc=utf-8&Page="+str(i))
 
     def parse(self,response):
         sel = Selector(response)
         sites = sel.xpath("//*[@id='plist']/ul/li")
-        items = []
+        #items = []
 
         for site in sites:
-            item = SensorItem()
-
+            item = self.item
             title = site.xpath('./div/div[2]/a/text()').extract()
             picture = site.xpath('./div/div[1]/a/img/@data-lazyload').extract()
             link = site.xpath('./div/div[2]/a/@href').extract()
             price = site.xpath('./div/div[3]/strong/text()').extract()
-            #desc = site.xpath('./div[2]/div[2]/div[2]/span/text()').extract()
-            #producer = site.xpath('./div[2]/p/a/text()').extract()
-            #prod_area = site.xpath('./div[2]/p/text()').extract()
-
             item['title'] = [t.encode('utf-8') for t in title]
             item['picture'] = [p.encode('utf-8') for p in picture]
             item['link'] = [l.encode('utf-8') for l in link]
             item['price'] = [p.encode('utf-8') for p in price]
-            #item['desc'] = [d.encode('utf-8') for d in desc]
-            #item['producer'] = [p.encode('utf-8') for p in producer]
-            #item['prod_area'] = [p.encode('utf-8') for p in prod_area]
+            #Request(link[0], callback=self.parse_detail)
             yield item
-            items.append(item)
+            item = []
+
+    def parse_detail(self,response):
+        item = self.item
+        sel = Selector(response)
+        desc = site.xpath("//*[@id='parameter2']/li/text()").extract() 
+        item['desc'] = [d.encode('utf-8') for d in desc]
+
 
         
 

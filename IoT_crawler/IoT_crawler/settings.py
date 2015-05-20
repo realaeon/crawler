@@ -9,8 +9,8 @@ COOKIES_ENABLED = True
 
 SPIDER_MODULES = ['IoT_crawler.spiders']
 NEWSPIDER_MODULE = 'IoT_crawler.spiders'
-ITEM_PIPELINES = {'IoT_crawler.pipelines.MongoPipeline':300,
-                  'IoT_crawler.pipelines.JsonPipeline':200,}
+ITEM_PIPELINES = {'IoT_crawler.pipelines.MongoPipeline':300,}
+                 # 'IoT_crawler.pipelines.JsonPipeline':200,}
 
 ####mongodb##### 
 MONGO_URI = 'mongodb://localhost:27017/'
@@ -25,3 +25,8 @@ SCHEDULER_PERSIST = True
 SCHEDULER_QUEUE_CLASS = "IoT_crawler.scrapy_redis.queue.SpiderPriorityQueue"
 #SCHEDULER_QUEUE_CLASS = "IoT_crawler.scrapy_redis.queue.SpiderQueue"
 #SCHEDULER_QUEUE_CLASS = "IoT_crawler.scrapy_redis.queue.SpiderStack"
+
+####graphite####
+#STATS_CLASS = 'scrapygraphite.GraphiteStatsCollector'
+#GRAPHITE_HOST = '127.0.0.1'
+#GRAPHITE_PORT = 2003
