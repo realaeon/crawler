@@ -5,6 +5,7 @@ from scrapy.spider import Spider
 from IoT_crawler.scrapy_redis.spiders import RedisSpider
 from scrapy.selector import Selector
 from scrapy import log
+from scrapy.conf import settings
 from scrapy.http import Request,FormRequest
 from IoT_crawler.items import IoTCrawlerItem,SensorItem
 import urllib
@@ -77,7 +78,7 @@ class SensorSpider(Spider):
             
 class Alibaba(Spider):
     name = "ali_crawler"
-    myKeywords ='智能手表' #'%C0%B6%D1%C0%C4%A3%BF%E9'#'zigbee%C4%A3%BF%E9'  #'wifi%C4%A3%BF%E9'
+    myKeywords = settings['MYKEYWORDS']
     myURLKeywords=urllib.quote(myKeywords.decode(sys.stdin.encoding).encode('gbk'))
     download_delay = 1
     start_urls = []
@@ -110,11 +111,11 @@ class Alibaba(Spider):
      
 class JingDong(RedisSpider):
     name = "jd_crawler"
-    myKeywords = '智能眼镜' 
+    myKeywords = settings['MYKEYWORDS']
     download_delay = 1
     start_urls = []
     item = SensorItem()
-    for i in range(9,90):
+    for i in range(1,2):
         start_urls.append("http://search.jd.com/Search?keyword="+myKeywords+"&enc=utf-8&Page="+str(i))
 
     def parse(self,response):

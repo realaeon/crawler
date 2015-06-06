@@ -26,6 +26,8 @@ SCHEDULER_QUEUE_CLASS = "IoT_crawler.scrapy_redis.queue.SpiderPriorityQueue"
 #SCHEDULER_QUEUE_CLASS = "IoT_crawler.scrapy_redis.queue.SpiderQueue"
 #SCHEDULER_QUEUE_CLASS = "IoT_crawler.scrapy_redis.queue.SpiderStack"
 
+MYKEYWORDS= '智能硬件'
+
 ####graphite####
 #STATS_CLASS = 'scrapygraphite.GraphiteStatsCollector'
 #GRAPHITE_HOST = '127.0.0.1'
