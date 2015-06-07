@@ -120,7 +120,7 @@ class JingDong(RedisSpider):
 
     def parse(self,response):
         sel = Selector(response)
-        sites = sel.xpath("//*[@id='plist']/ul/li")
+        sites = sel.xpath("//*[@id='plist']/ul/li[1]")
         #items = []
 
         for site in sites:
@@ -131,6 +131,7 @@ class JingDong(RedisSpider):
             price = site.xpath('./div/div[3]/strong/text()').extract()
             item['title'] = [t.encode('utf-8') for t in title]
             item['picture'] = [p.encode('utf-8') for p in picture]
+            item['image_urls'] = [p.encode('utf-8') for p in picture]
             item['link'] = [l.encode('utf-8') for l in link]
             item['price'] = [p.encode('utf-8') for p in price]
             #Request(link[0], callback=self.parse_detail)

@@ -9,8 +9,10 @@ COOKIES_ENABLED = True
 
 SPIDER_MODULES = ['IoT_crawler.spiders']
 NEWSPIDER_MODULE = 'IoT_crawler.spiders'
-ITEM_PIPELINES = {'IoT_crawler.pipelines.MongoPipeline':300,}
+ITEM_PIPELINES = {'IoT_crawler.pipelines.MongoPipeline':300,
+                  'scrapy.contrib.pipeline.images.ImagesPipeline': 1}
                  # 'IoT_crawler.pipelines.JsonPipeline':200,}
+IMAGES_STORE = 'images/'
 
 ####mongodb##### 
 MONGO_URI = 'mongodb://localhost:27017/'

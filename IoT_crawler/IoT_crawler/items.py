@@ -16,5 +16,5 @@ class SensorItem(Item):
     producer = Field()
     prod_area = Field()
     price = Field()
-
-
+    image_urls = Field()
+    images = Field()
